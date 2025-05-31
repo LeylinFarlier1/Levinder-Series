@@ -193,8 +193,8 @@ print("Módulos de las raíces de la Serie 4 (Wt = -0.80Wt−1 + 0.30Wt−2 + et
 #grafico las lineas en -1 y 1
 #lue
 
-beta2 = np.linspace(-5, 5, 400)
-beta1 = np.linspace(-5, 5, 400)
+beta2 = np.linspace(-4, 4, 400)
+beta1 = np.linspace(-4, 4, 400)
 B1, B2 = np.meshgrid(beta1, beta2)
 
 # Condiciones para el área de estabilidad
@@ -203,7 +203,7 @@ region = (np.abs(B2) < 1) & (B2 > -B1**2 / 4) & (B2 < 1 - B1) & (B2 < 1 + B1)
 # Nueva región: debajo de la parábola pero encima de -1
 debajo_parabola = (B2 < -B1**2 / 4) & (B2 > -1) & (np.abs(B2) < 1)
 
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(8, 6))
 
 # Rellenar la región de estabilidad
 plt.contourf(B1, B2, region, levels=[0.5, 1], colors=['#ffe082'], alpha=0.7, zorder=0)
@@ -221,7 +221,6 @@ parabola_beta2 = -beta1**2 / 4
 plt.plot(beta1, parabola_beta2, color='green', label=r'$\beta_2 = -\beta_1^2 / 4$')
 
 # Añadir los módulos de las raíces como puntos
-# (Asegúrate de que los módulos ya estén calculados antes de este bloque)
 plt.scatter([beta1_1], [beta2_1], color='black', s=80, marker='o', label='Serie 1')
 plt.scatter([beta1_2], [beta2_2], color='orange', s=80, marker='o', label='Serie 2')
 plt.scatter([beta1_3], [beta2_3], color='green', s=80, marker='o', label='Serie 3')
@@ -235,6 +234,8 @@ plt.scatter([beta1_d], [beta2_d], color='olive', s=80, marker='o', label='Serie 
 plt.xlabel(r'$\beta_1$')
 plt.ylabel(r'$\beta_2$')
 plt.title('Condiciones de Estabilidad para AR(2)')
+plt.xlim(-2, 2)
+plt.ylim(-2, 2)
 plt.legend()
 plt.grid()
 plt.show()
